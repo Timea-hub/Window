@@ -1,0 +1,7 @@
+{
+  "name": "windowapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
