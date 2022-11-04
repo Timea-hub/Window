@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoginPage } from './login.page';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('LoginPage', () => {
   let component: LoginPage;
@@ -14,7 +15,8 @@ describe('LoginPage', () => {
       declarations: [ LoginPage ],
       imports: [
         IonicModule.forRoot(),
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule
         ]
     }).compileComponents();
 
@@ -38,6 +40,12 @@ describe('LoginPage', () => {
     component.register();
     
     expect(router.navigate).toHaveBeenCalledWith(['register']);
+  });
+
+  it('should create form on init', () => {
+    component.ngOnInit();
+
+    expect(component.form).not.toBeUndefined();
   });
 
 });

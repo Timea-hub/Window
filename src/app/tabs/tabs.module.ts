@@ -7,17 +7,16 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
 
-//const routes: Routes = {
-  //path: '',
-  //component: TabsPages
-//}
+// const routes: Routes = {
+//   path: '',
+//   component: TabsPages
+// }
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
-    FormsModule,
-    TabsPageRoutingModule,
+    FormsModule
 
   ],
   declarations: [TabsPage]

@@ -7,23 +7,9 @@ const routes: Routes = [
   {path: '', redirectTo: 'loading', pathMatch: "full"},
   {path: 'loading', loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)},
   {path: 'register',loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)},
-  {path: '', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)},//merge doar daca am ''
-  //{
-  //   path: 'tabs',
-  //   component: TabsPage,
-  //   children: [
-  //     {
-  //       path: 'Weather',
-  //       redirectTo: '/app/tabs/schedule',
-  //       pathMatch: 'full'
-  //     },
-  //     {
-  //       path: 'Account',
-  //       redirectTo: '/app/tabs/schedule',
-  //       pathMatch: 'full'
-  //     }
-  //   ]
-  // }
+  {path: 'tabs', loadChildren: () => import('./tabs/tabs-routing.module').then(m => m.TabsPageRoutingModule)}
+
+
 
 ];
 @NgModule({
