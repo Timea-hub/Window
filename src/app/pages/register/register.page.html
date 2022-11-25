@@ -39,8 +39,11 @@
 
       <ion-item>
         <ion-label position="floating">Phone number:</ion-label>
-        <ion-input type="tel"></ion-input>
+        <ion-input type="tel" formControlName="tel"></ion-input>
       </ion-item>
+
+      <!-- <app-error-message [field]="form.get('tel')" error="required" message="Email is mandatory"></app-error-message> -->
+    
 
       <ion-item>
         <ion-label position="floating">Full name:</ion-label>

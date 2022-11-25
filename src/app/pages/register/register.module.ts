@@ -1,20 +1,34 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormGroup, FormBuilder } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { RegisterPageRoutingModule } from './register-routing.module';
-
+import { Router } from '@angular/router';
 import { RegisterPage } from './register.page';
+import { ErrorMessageComponent } from 'src/app/components/error-message/error-message.component';
+
+
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RegisterPageRoutingModule
-  ],
-  declarations: [RegisterPage]
+    declarations: [RegisterPage],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RegisterPageRoutingModule
+    ]
 })
-export class RegisterPageModule {}
+
+
+export class RegisterPageModule implements OnInit{
+
+  constructor(private router: Router, private formBuilder: FormBuilder) { }
+
+  form: FormGroup;
+
+  ngOnInit() {
+    //this.form = new RegisterPageForm(this.formBuilder).createForm();
+  }
+}
