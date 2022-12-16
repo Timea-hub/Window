@@ -19,7 +19,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 @NgModule({
     declarations: [
       AppComponent,
-      LoadingComponent
+      //LoadingComponent
     ],
     providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
     bootstrap: [AppComponent],
@@ -28,8 +28,9 @@ import { LoadingComponent } from './components/loading/loading.component';
         AppRoutingModule,
         TabsPageRoutingModule,
         TabsPageModule,
-        ...AppStoreModule,
-        StoreDevtoolsModule.instrument({ maxAge: 25 }),
-        AngularFireModule.initializeApp(environment.firebaseConfig)]
+        //...AppStoreModule,
+        //StoreDevtoolsModule.instrument({ maxAge: 25 }),
+        //AngularFireModule.initializeApp(environment.firebaseConfig)
+      ]
 })
 export class AppModule {}
