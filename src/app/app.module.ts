@@ -13,7 +13,13 @@ import { TabsPage } from './tabs/tabs.page';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, TabsPageRoutingModule, TabsPageModule],
+  imports: [
+    BrowserModule,
+     IonicModule.forRoot(),
+      AppRoutingModule,
+       TabsPageRoutingModule,
+        TabsPageModule
+      ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
