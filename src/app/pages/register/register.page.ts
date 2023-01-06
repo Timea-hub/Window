@@ -6,6 +6,7 @@ import { FirebaseError } from 'firebase/app';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { RegisterPageForm } from './form/register.page.form';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +15,12 @@ import 'firebase/compat/firestore';
 })
 export class RegisterPage implements OnInit {
 
+  role:any;
   email:any;
   password:any;
   name:any;
+
+  registerForm: RegisterPageForm;
 
   constructor(private router: Router) { }
 

@@ -38,6 +38,10 @@ describe('RegisterPageForm', () =>{
         expect(form.get('repeatPassword').valid).toBeFalsy();
     })
 
+    it('should create register form on page init', () => {
+        //fixture.detectChanges();
+    })
+
     it('should be valid', ()=> {
         form.get('role').setValue("anyRole");
         form.get('name').setValue("anyName");
