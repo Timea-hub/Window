@@ -9,6 +9,10 @@ import { AppComponent } from './app.component';
 import { TabsPageRoutingModule } from './tabs/tabs-routing.module';
 import { TabsPageModule } from './tabs/tabs.module';
 import { TabsPage } from './tabs/tabs.page';
+import { environment } from 'src/environments/environment';
+//import { AngularFireModule } from '@angular/fire';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 //import { TabsPageRoutingModule } from './tabs/tabs.page';
 
 @NgModule({
@@ -17,6 +21,7 @@ import { TabsPage } from './tabs/tabs.page';
     BrowserModule,
      IonicModule.forRoot(),
       AppRoutingModule,
+//      AngularFireModule.initializeApp(environment.firebaseConfig),
        TabsPageRoutingModule,
         TabsPageModule
       ],
