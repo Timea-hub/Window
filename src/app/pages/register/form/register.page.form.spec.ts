@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { ExceptionCode } from "@capacitor/core";
+//import { ExceptionCode } from "@capacitor/core";
 import { RegisterPageForm } from "./register.page.form"
 
 
@@ -52,3 +52,12 @@ describe('RegisterPageForm', () =>{
     })
 
 })
+
+function beforeEach(arg0: () => void) {
+    throw new Error("Function not implemented.");
+}
+
+
+function expect(valid: boolean) {
+    throw new Error("Function not implemented.");
+}
