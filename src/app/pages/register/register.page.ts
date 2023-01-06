@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular'
-import { FirebaseError } from 'firebase/app';
-//import * as firebase from 'firebase/app';
-import firebase from 'firebase/compat/app';
+//import { FirebaseError } from 'firebase/app';
+import * as firebase from 'firebase/app';
+//import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { RegisterPageForm } from './form/register.page.form';

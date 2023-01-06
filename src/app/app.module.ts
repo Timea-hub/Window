@@ -11,7 +11,7 @@ import { TabsPageModule } from './tabs/tabs.module';
 import { TabsPage } from './tabs/tabs.page';
 import { environment } from 'src/environments/environment';
 //import { AngularFireModule } from '@angular/fire';
-import { initializeApp } from "firebase/app";
+//import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
