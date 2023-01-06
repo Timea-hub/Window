@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment';
 //import { AngularFireModule } from '@angular/fire';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 //import { TabsPageRoutingModule } from './tabs/tabs.page';
 
 @NgModule({
@@ -21,6 +23,8 @@ import { getAnalytics } from "firebase/analytics";
     BrowserModule,
      IonicModule.forRoot(),
       AppRoutingModule,
+      CommonModule,
+      FormsModule,
 //      AngularFireModule.initializeApp(environment.firebaseConfig),
        TabsPageRoutingModule,
         TabsPageModule
