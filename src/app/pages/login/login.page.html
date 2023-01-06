@@ -20,7 +20,8 @@
       </ion-item>
       <app-error-message [field] = "form.get('password')" error="required" message="Password is mandatory"></app-error-message>
       
-      <ion-button color="medium" fill="clear" [disabled]="!form.get('email').valid">Forgot email/password</ion-button>
+      <ion-button color="medium" fill="clear" [disabled]="!form.get('email').valid"
+      (click) = "forgotEmailPassword()">Forgot email/password</ion-button>
       <ion-button color="secondary" size="full" [disabled]="!form.valid" (click)="login()">Login</ion-button>
       <ion-button color="secondary" fill="clear" size="full" (click)="register()">Register</ion-button>
     </ion-card-content>

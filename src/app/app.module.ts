@@ -15,21 +15,31 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AppStoreModule } from 'src/store/AppStoreModule';
+//import { StoreDevtools } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools/src';
+import { LoadingPageModule } from "./pages/loading/loading.module";
+import { LoadingComponent } from './components/loading/loading.component';
 //import { TabsPageRoutingModule } from './tabs/tabs.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-     IonicModule.forRoot(),
-      AppRoutingModule,
-      CommonModule,
-      FormsModule,
-//      AngularFireModule.initializeApp(environment.firebaseConfig),
-       TabsPageRoutingModule,
-        TabsPageModule
-      ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent],
+    declarations: [
+      AppComponent,
+      LoadingComponent],
+    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        CommonModule,
+        FormsModule,
+        //      AngularFireModule.initializeApp(environment.firebaseConfig),
+        TabsPageRoutingModule,
+        TabsPageModule,
+        ...AppStoreModule,
+        StoreDevtoolsModule.instrument({ maxAge: 25 }),
+        LoadingPageModule
+    ]
 })
 export class AppModule {}
