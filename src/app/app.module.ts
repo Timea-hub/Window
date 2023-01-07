@@ -10,7 +10,11 @@ import { TabsPageRoutingModule } from './tabs/tabs-routing.module';
 import { TabsPageModule } from './tabs/tabs.module';
 import { TabsPage } from './tabs/tabs.page';
 import { environment } from 'src/environments/environment';
-//import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { CommonModule } from '@angular/common';
@@ -25,7 +29,7 @@ import { FormsModule } from '@angular/forms';
       AppRoutingModule,
       CommonModule,
       FormsModule,
-//      AngularFireModule.initializeApp(environment.firebaseConfig),
+      AngularFireModule.initializeApp(environment.firebaseConfig),
        TabsPageRoutingModule,
         TabsPageModule
       ],
