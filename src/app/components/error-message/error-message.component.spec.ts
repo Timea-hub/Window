@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 
 import { ErrorMessageComponent } from './error-message.component';
