@@ -33,6 +33,7 @@
     "@ngrx/store-devtools": "^15.1.0",
     "firebase": "^9.15.0",
     "ionicons": "^6.0.3",
+    "ngx-build-plus": "^15.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
