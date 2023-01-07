@@ -21,6 +21,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools/src';
 import { LoadingPageModule } from "./pages/loading/loading.module";
 import { LoadingComponent } from './components/loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
 //import { TabsPageRoutingModule } from './tabs/tabs.page';
 
 @NgModule({
@@ -41,7 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ...AppStoreModule,
         StoreDevtoolsModule.instrument({ maxAge: 25 }),
         LoadingPageModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        StoreModule.forRoot({}, {})
     ]
 })
 export class AppModule {}
