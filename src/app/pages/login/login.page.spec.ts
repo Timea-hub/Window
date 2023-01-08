@@ -8,8 +8,14 @@ import { createAction, Store, StoreModule } from '@ngrx/store';
 import { loadingReducer } from 'src/store/loading/loading.reducers';
 import { loginReducer } from 'src/store/login/login.reducers';
 import { AppState } from 'src/store/AppState';
-import { recoverPassword, recoverPasswordFail, recoverPasswordSuccess } from 'src/store/login/login.actions';
+import { login, loginFail, loginSuccess, recoverPassword, recoverPasswordFail, recoverPasswordSuccess } from 'src/store/login/login.actions';
 import { hide, show } from 'src/store/loading/loading.action';
+import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { User } from 'src/app/model/user/user';
+import { Observable, of, throwError } from 'rxjs';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 
 describe('LoginPage', () => {
   let component: LoginPage;
@@ -28,7 +34,8 @@ describe('LoginPage', () => {
         ReactiveFormsModule,
         StoreModule.forRoot([]),
         StoreModule.forFeature("loading", loadingReducer),
-        StoreModule.forFeature("login", loginReducer)
+        StoreModule.forFeature("login", loginReducer),
+        AngularFireModule.initializeApp(environment.firebaseConfig)
         ]
     }).compileComponents();
 
@@ -70,17 +77,11 @@ describe('LoginPage', () => {
     store.select('login').subscribe(loginState => {
       expect(loginState.isRecoveringPassword).toBeTruthy();
     })
-  })
-
-  it('should show loading when recovering password', () => {
-    
-    fixture.detectChanges(); //start page
-    store.dispatch(recoverPassword());
-    page.querySelector("#recoverPasswordButton").click();
     store.select('loading').subscribe(loginState => {
       expect(loginState.show).toBeTruthy(); 
     })
   })
+
 
   it('should hide loading component and show a success message when the password is recovered', () => {
     spyOn(toastController, 'create');
@@ -88,8 +89,8 @@ describe('LoginPage', () => {
     fixture.detectChanges(); //start page
     store.dispatch(recoverPassword());
     store.dispatch(recoverPasswordSuccess());
-    store.select('loading').subscribe(loginState => {
-      expect(loginState.show).toBeFalsy(); 
+    store.select('loading').subscribe(loadingState => {
+      expect(loadingState.show).toBeFalsy(); 
     })
 
     expect(toastController.create).toHaveBeenCalledTimes(1);
@@ -101,10 +102,52 @@ describe('LoginPage', () => {
     fixture.detectChanges(); //start page
     store.dispatch(recoverPassword());
     store.dispatch(recoverPasswordFail({error: "message"}));
-    store.select('loading').subscribe(loginState => {
-      expect(loginState.show).toBeFalsy();
+    store.select('loading').subscribe(loadingState => {
+      expect(loadingState.show).toBeFalsy();
     })
 
+    expect(toastController.create).toHaveBeenCalledTimes(1);
+  })
+
+  it('should show loading component and start login when logging in', () => {
+    fixture.detectChanges(); //start page
+    component.form.get('email').setValue('timea@email.com');
+    component.form.get('password').setValue('123456');
+    page.querySelector("#loginButton").click();
+    store.select('loading').subscribe(loadingState => {
+      expect(loadingState.show).toBeTruthy(); 
+    })
+    store.select('login').subscribe(loginState => {
+      expect(loginState.isLoggingIn).toBeTruthy();
+    })
+  })
+
+  it('should hide loading component and send user to home page when logged in', () => {
+    spyOn(router, 'navigate');
+
+    fixture.detectChanges(); //start page
+    store.dispatch(login());
+    store.dispatch(loginSuccess({user: new User()}));
+    store.select('loading').subscribe(loadingState => {
+      expect(loadingState.show).toBeFalsy(); 
+    })
+    store.select('login').subscribe(loginState => {
+      expect(loginState.isLoggingIn).toBeTruthy();
+    })
+    expect(router.navigate).toHaveBeenCalledWith(['/tabs']);
+  })
+
+  it('should hide loading component and show error when user failed to log in', () => {
+    spyOn(toastController, 'create').and.returnValue(<any> Promise.resolve({present: () => {}}));
+
+    fixture.detectChanges(); //start page
+    store.dispatch(login());
+    store.dispatch(loginFail({error: {message: 'error message'}}));
+
+    store.select('loading').subscribe(loadingState => {
+      expect(loadingState.show).toBeFalsy(); 
+    })
+    
     expect(toastController.create).toHaveBeenCalledTimes(1);
   })
 

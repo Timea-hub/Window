@@ -31,8 +31,8 @@ import { Store, select } from '@ngrx/store';
     AppComponent,
     LoadingComponent],
   imports: [
-    BrowserModule,
-     IonicModule.forRoot(),
+      BrowserModule,
+      IonicModule.forRoot(),
       AppRoutingModule,
       ...AppStoreModule,
       StoreDevtoolsModule.instrument({maxAge: 25}),
