@@ -10,6 +10,7 @@ import { login, recoverPassword} from 'src/store/login/login.actions';
 import { LoginState } from 'src/store/login/LoginState';
 import { LoginPageForm } from './login.page.form';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -86,7 +87,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
   login(){
     //this.router.navigate(['/tabs']);
-    this.store.dispatch(login());
+    this.store.dispatch(login({email: this.form.get('email').value, password: this.form.get('password').value}));
   }
 
   register(){
@@ -94,7 +95,7 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   forgotEmailPassword(){
-    this.store.dispatch(recoverPassword());
+    this.store.dispatch(recoverPassword({email: this.form.get('email').value}));
     
     setTimeout(() => {
       this.store.dispatch(hide())

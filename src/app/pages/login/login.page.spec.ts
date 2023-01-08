@@ -87,7 +87,7 @@ describe('LoginPage', () => {
     spyOn(toastController, 'create');
 
     fixture.detectChanges(); //start page
-    store.dispatch(recoverPassword());
+    store.dispatch(recoverPassword({email: "amy@email.com"}));
     store.dispatch(recoverPasswordSuccess());
     store.select('loading').subscribe(loadingState => {
       expect(loadingState.show).toBeFalsy(); 
@@ -100,7 +100,7 @@ describe('LoginPage', () => {
     spyOn(toastController, 'create');
 
     fixture.detectChanges(); //start page
-    store.dispatch(recoverPassword());
+    store.dispatch(recoverPassword({email: "amy@email.com"}));
     store.dispatch(recoverPasswordFail({error: "message"}));
     store.select('loading').subscribe(loadingState => {
       expect(loadingState.show).toBeFalsy();
@@ -126,7 +126,7 @@ describe('LoginPage', () => {
     spyOn(router, 'navigate');
 
     fixture.detectChanges(); //start page
-    store.dispatch(login());
+    store.dispatch(login({email: "valid@email.com", password: "anypassword"}));
     store.dispatch(loginSuccess({user: new User()}));
     store.select('loading').subscribe(loadingState => {
       expect(loadingState.show).toBeFalsy(); 
@@ -141,7 +141,7 @@ describe('LoginPage', () => {
     spyOn(toastController, 'create').and.returnValue(<any> Promise.resolve({present: () => {}}));
 
     fixture.detectChanges(); //start page
-    store.dispatch(login());
+    store.dispatch(login({email: "valid@email.com", password: "anypassword"}));
     store.dispatch(loginFail({error: {message: 'error message'}}));
 
     store.select('loading').subscribe(loadingState => {
