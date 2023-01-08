@@ -3,6 +3,8 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RegisterPage } from './register.page';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterPageModule } from './register.module';
 
 describe('RegisterPage', () => {
   let component: RegisterPage;
@@ -13,7 +15,9 @@ describe('RegisterPage', () => {
     TestBed.configureTestingModule({
       declarations: [ RegisterPage ],
       imports: [IonicModule.forRoot(),
-                AppRoutingModule]
+                AppRoutingModule,
+                ReactiveFormsModule,
+                RegisterPageModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterPage);
@@ -25,7 +29,7 @@ describe('RegisterPage', () => {
   it('should go to home page pushing register button', () => {
     spyOn(router, 'navigate');
 
-    component.reg();
+    component.register();
     
     expect(router.navigate).toHaveBeenCalledWith(['/tabs']);
   });

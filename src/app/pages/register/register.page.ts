@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular'
 import { FirebaseError } from 'firebase/app';
@@ -15,27 +16,23 @@ import { RegisterPageForm } from './form/register.page.form';
 })
 export class RegisterPage implements OnInit {
 
-  role:any;
-  email:any;
-  password:any;
-  name:any;
 
   registerForm: RegisterPageForm;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.createForm();
   }
 
-  reg(){
+  register(){
     this.router.navigate(['/tabs']);
   }
 
-  Register(){
-    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(res=>{
-      console.log('response = ', res);
-    });
+  private createForm(){
+    this.registerForm = new RegisterPageForm(this.formBuilder);
   }
+  
 
 
 }

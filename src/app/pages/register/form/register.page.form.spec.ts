@@ -1,11 +1,14 @@
+import { ComponentFixture } from "@angular/core/testing";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ExceptionCode } from "@capacitor/core";
 import { RegisterPageForm } from "./register.page.form"
+//import { RegisterPage } from "./register.page";
 
 
 describe('RegisterPageForm', () =>{
 
     let registerPageForm: RegisterPageForm;
+   // let fixture: ComponentFixture<RegisterPage>;
     let form: FormGroup;
 
     beforeEach(() => {
@@ -38,9 +41,11 @@ describe('RegisterPageForm', () =>{
         expect(form.get('repeatPassword').valid).toBeFalsy();
     })
 
-    it('should create register form on page init', () => {
-        //fixture.detectChanges();
-    })
+    // it('should create register form on page init', () => {
+    //     fixture.detectChanges();
+
+    //     expect(component.registerForm).not.toBeUndefined();
+    // })
 
     it('should be valid', ()=> {
         form.get('role').setValue("anyRole");
