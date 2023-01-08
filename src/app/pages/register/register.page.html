@@ -1,51 +1,27 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-title>Welcome to Ability! The next step to your mobility.</ion-title>
+    <ion-title>Welcome to Ability!</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        Please select your role:
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-radio-group value="role">
-          <ion-item>
-            <ion-label>Customer</ion-label>
-            <ion-radio slot="start" value="Customer"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Admin</ion-label>
-            <ion-radio slot="start" value="Admin" ></ion-radio>
-          </ion-item>
-      
-        </ion-radio-group>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
 
+ <h2>The next step to your mobility.</h2>
+  
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        Email:
-      </ion-card-title>
-    </ion-card-header>
     <ion-card-content>
+
+      <ion-item>
+        <ion-label position="floating">Full name:</ion-label>
+        <ion-input type="text" [(ngModel)]="name"></ion-input>
+      </ion-item>
 
       <ion-item>
         <ion-label position="floating">Phone number:</ion-label>
         <ion-input type="tel"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Full name:</ion-label>
-        <ion-input type="text" [(ngModel)]="name"></ion-input>
-      </ion-item>
+      
 
       <ion-item>
         <ion-label position="floating">Email:</ion-label>
@@ -59,12 +35,13 @@
         <ion-label position="floating">Confirm password:</ion-label>
         <ion-input type="password"></ion-input>
       </ion-item>
-
-      <ion-button size="full" fill="clear" (click)='reg()'>
-        Register
-      </ion-button>
-
+    
+    
     </ion-card-content>
+    <ion-button size="full" fill="clear" (click)='reg()'>
+      Register
+    </ion-button>
   </ion-card>
 
 </ion-content>
+
