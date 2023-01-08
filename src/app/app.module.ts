@@ -36,6 +36,7 @@ import { Store, select } from '@ngrx/store';
       AppRoutingModule,
       ...AppStoreModule,
       StoreDevtoolsModule.instrument({maxAge: 25}),
+     // StoreModule.forRoot(),
       CommonModule,
       FormsModule,
       AngularFireModule.initializeApp(environment.firebaseConfig),
