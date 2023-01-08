@@ -19,19 +19,28 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AppStoreModule } from 'src/store/AppStoreModule';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { LoadingComponent } from './components/loading/loading.component';
 //import { TabsPageRoutingModule } from './tabs/tabs.page';
+import { StoreModule } from "@ngrx/store/src";
+import { Store, select } from '@ngrx/store';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    LoadingComponent],
   imports: [
     BrowserModule,
      IonicModule.forRoot(),
       AppRoutingModule,
+      ...AppStoreModule,
+      StoreDevtoolsModule.instrument({maxAge: 25}),
       CommonModule,
       FormsModule,
       AngularFireModule.initializeApp(environment.firebaseConfig),
-       TabsPageRoutingModule,
-        TabsPageModule
+      TabsPageRoutingModule,
+      TabsPageModule
       ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
