@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/store/AppState';
@@ -19,7 +19,7 @@ import { LoginPageForm } from './login.page.form';
 export class LoginPage implements OnInit, OnDestroy {
 
   constructor(private router: Router, private formBuilder: FormBuilder, private store: Store<AppState>,
-    private toastController: ToastController) { }
+    private toastController: ToastController, private navController: NavController) { }
 
   form: FormGroup;
   loginStateSubscription: Subscription;
@@ -53,7 +53,8 @@ export class LoginPage implements OnInit, OnDestroy {
 
   private onIsLoggedIn(loginState: LoginState){
     if(loginState.isLoggedIn){
-      this.router.navigate(['/tabs']);
+      //this.router.navigate(['/tabs']);
+      this.navController.navigateRoot('/tabs');
     }
   }
 

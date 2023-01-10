@@ -48,8 +48,9 @@ describe('RegisterPageForm', () =>{
     // })
 
     it('should be valid', ()=> {
-        form.get('role').setValue("anyRole");
+        //form.get('role').setValue("anyRole");
         form.get('name').setValue("anyName");
+        form.get('phone').setValue("123456789");
         form.get('email').setValue("any@email.com");
         form.get('password').setValue("anyPassword");
         form.get('repeatPassword').setValue("anyPassword");

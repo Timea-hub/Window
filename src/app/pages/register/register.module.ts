@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
+import { ErrorMessageModule } from 'src/app/components/error-message/error-message.module';
 
 @NgModule({
   imports: [
@@ -13,8 +14,11 @@ import { RegisterPage } from './register.page';
     FormsModule,
     IonicModule,
     RegisterPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ErrorMessageModule
   ],
-  declarations: [RegisterPage]
+  declarations: [
+    RegisterPage
+  ]
 })
 export class RegisterPageModule {}

@@ -7,41 +7,45 @@
 <ion-content>
 
  <h2>The next step to your mobility.</h2>
-  
+ <form [formGroup]="registerForm.getForm()">
   <ion-card>
     <ion-card-content>
-
+     
       <ion-item>
         <ion-label position="floating">Full name:</ion-label>
-        <ion-input type="text" [(ngModel)]="name"></ion-input>
+        <ion-input type="text" formControlName = "name"></ion-input>
       </ion-item>
+      <app-error-message [field] = "registerForm.getForm().get('name')" error="required" message="Name is mandatory"></app-error-message>
 
       <ion-item>
         <ion-label position="floating">Phone number:</ion-label>
-        <ion-input type="tel"></ion-input>
+        <ion-input type="tel" formControlName = "phone"></ion-input>
       </ion-item>
-
-      
+      <app-error-message [field] = "registerForm.getForm().get('phone')" error="required" message="Phone number is mandatory"></app-error-message>
 
       <ion-item>
         <ion-label position="floating">Email:</ion-label>
-        <ion-input type="email" [(ngModel)]="email"></ion-input>
+        <ion-input type="email" formControlName = "email"></ion-input>
       </ion-item>
+      <app-error-message [field] = "registerForm.getForm().get('email')" error="required" message="Email is mandatory"></app-error-message>
+      <app-error-message [field] = "registerForm.getForm().get('email')" error="email" message="Email is invalid"></app-error-message>
       <ion-item>
         <ion-label position="floating">Password:</ion-label>
-        <ion-input type="password" [(ngModel)]="password"></ion-input>
+        <ion-input type="password" formControlName = "password"></ion-input>
       </ion-item>
+      <app-error-message [field] = "registerForm.getForm().get('password')" error="required" message="Password is mandatory"></app-error-message>
+      <app-error-message [field] = "registerForm.getForm().get('password')" error="minlength" message="Minimum of 6 characters"></app-error-message>
       <ion-item>
         <ion-label position="floating">Confirm password:</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName = "repeatPassword"></ion-input>
       </ion-item>
-    
+      <app-error-message [field] = "registerForm.getForm().get('password')" error="isntMatching" message="Password and Repeat password are different"></app-error-message>
     
     </ion-card-content>
-    <ion-button size="full" fill="clear" (click)='reg()'>
+    <ion-button size="full" fill="clear" (click)='register()'>
       Register
     </ion-button>
   </ion-card>
-
+</form>
 </ion-content>
 
