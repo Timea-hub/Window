@@ -51,20 +51,13 @@ export class RegisterPage implements OnInit, OnDestroy {
     if(this.registerForm.getForm().valid){
       //this.router.navigate(['/tabs']);
       this.store.dispatch(register({userRegister: this.registerForm.getForm().value}));
+      this.registerForm.addInfo();
     }
   }
 
   back(){
     this.router.navigate(['loading']);
   }
-
-  // addInfo(){
-  //   const firebaseApp = getApp();
-  //   const db = getFirestore(firebaseApp);
-
-  //   const userCollection = collection(db, 'users');
-  //   console.log(this)
-  // }
   
   
 

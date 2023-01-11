@@ -24,7 +24,7 @@
  <h2>The next step to your mobility.</h2>
  <form [formGroup]="registerForm.getForm()">
   <ion-card>
-    <ion-card-content>
+    <ion-card-content *ngIf="registerForm.form != null">
      
       <ion-item>
         <ion-label position="floating">Full name:</ion-label>

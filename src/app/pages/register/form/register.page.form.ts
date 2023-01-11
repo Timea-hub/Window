@@ -4,7 +4,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export class RegisterPageForm{
     private formBuilder: FormBuilder;
-    private form: FormGroup;
+    public form: FormGroup;
 
     constructor(formBuilder: FormBuilder){
         this.formBuilder = formBuilder;
