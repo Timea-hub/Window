@@ -18,30 +18,22 @@ export class AuthService {
     //this.register = fireStore.collection<any>('User');
    }
 
-  register(userRegister: UserRegister) : Observable<void> {
-    // return new Observable<void>(observer => {
-    //   setTimeout(() => {
-    //     if(userRegister.email == "error@email.com"){
-    //       observer.error({message: "email already registered"})
-    //     } else {
-    //       observer.next();
-    //     }
-    //     observer.complete();
-        
-    //   }, 3000)
-    // })
-//------------------------------
-    return new Observable<void>(observer => {
+   register(userRegister: UserRegister) : Observable<any> {
+    return new Observable<any>(observer => {
 
-    this.auth.createUserWithEmailAndPassword(userRegister.email, userRegister.password)
-    .then((  ) => {
-        observer.next();
-        observer.complete();
-      }).catch(error => {
-        observer.error(error);
-        observer.complete();
-      })
-      })
+      this.auth.createUserWithEmailAndPassword(userRegister.email, userRegister.password)
+      .then(( response ) => {
+        const user = new UserRegister();
+        if(response?.user != null){
+          user.uid = response.user.uid;
+        }
+          observer.next(user);
+          observer.complete();
+        }).catch(error => {
+          observer.error(error);
+          observer.complete();
+        })
+        })
 
   }
 

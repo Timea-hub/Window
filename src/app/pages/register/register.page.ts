@@ -19,6 +19,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore, collection } from 'firebase/firestore'
 import { getAnalytics } from 'firebase/analytics';
 import { environment } from 'src/environments/environment';
+import { UserRegister } from 'src/app/model/user/UserRegister';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -50,8 +51,15 @@ export class RegisterPage implements OnInit, OnDestroy {
     //const analytics = getAnalytics(app);
     if(this.registerForm.getForm().valid){
       //this.router.navigate(['/tabs']);
-      this.store.dispatch(register({userRegister: this.registerForm.getForm().value}));
-      this.registerForm.addInfo();
+      this.store.dispatch(register({payload: new GenericCallbackWrapper<UserRegister, UserRegister>
+        (this.registerForm.getForm().value, (result: UserRegister) => {
+            debugger
+            if(result != null){
+              this.registerForm.uid = result.uid;
+              this.registerForm.addInfo();
+            }
+
+      } ) }));
     }
   }
 
@@ -102,6 +110,16 @@ export class RegisterPage implements OnInit, OnDestroy {
     }
   }
 
+}
+
+export class GenericCallbackWrapper<T, C> {
+  public data: T;
+  public callback: (result: C) => void;
+
+  constructor(data: T, callback: (result: C) => void) {
+    this.data = data;
+    this.callback = callback;
+  }
 }
 
 

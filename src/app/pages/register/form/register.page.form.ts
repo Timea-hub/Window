@@ -5,6 +5,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 export class RegisterPageForm{
     private formBuilder: FormBuilder;
     public form: FormGroup;
+    public uid: string;
 
     constructor(formBuilder: FormBuilder){
         this.formBuilder = formBuilder;
@@ -18,7 +19,8 @@ export class RegisterPageForm{
             email: ['', [Validators.required, Validators.email]],
             phone: ['', [Validators.required]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            repeatPassword: ['', [Validators.required]]
+            repeatPassword: ['', [Validators.required]],
+            uid: ['']
 
         });
 
@@ -35,6 +37,7 @@ export class RegisterPageForm{
         const db = getFirestore(firebaseApp);
     
         const userCollection = collection(db, 'users');
+        this.form.controls['uid'].setValue(this.uid);
         addDoc(userCollection, this.form.value);
       }
 }

@@ -15,13 +15,28 @@ export class RegisterEffects {
     }
     
 
+    // register$ = createEffect(() => this.actions$.pipe(
+    //     ofType(register),
+    //     switchMap((payload: {userRegister: UserRegister}) =>
+    //     this.authService.register(payload.userRegister).pipe(
+    //         map(() => registerSuccess()),
+    //         catchError(error => of(registerFail({error})))
+
+    //     ))
+    // ))
+
     register$ = createEffect(() => this.actions$.pipe(
         ofType(register),
-        switchMap((payload: {userRegister: UserRegister}) =>
-        this.authService.register(payload.userRegister).pipe(
-            map(() => registerSuccess()),
-            catchError(error => of(registerFail({error})))
-
-        ))
-    ))
+        switchMap((action) =>
+        this.authService.register(
+          action.payload.data)
+          .pipe(
+            map((response) => {
+                //   if (timeOffResponseData != null && action.payload.callback!= null) {
+                     action.payload.callback(response);
+                //   }
+                  return  registerSuccess();
+                }),
+                catchError((err) => of(registerFail(err)))
+                ))));
 }
