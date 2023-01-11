@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular'
 import { Store } from '@ngrx/store';
-import { FirebaseError } from 'firebase/app';
+import { FirebaseError, getApp, initializeApp } from 'firebase/app';
 //import * as firebase from 'firebase/app';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -16,7 +16,9 @@ import { register } from 'src/store/register/register.actions';
 import { RegisterState } from 'src/store/register/RegisterState';
 import { RegisterPageForm } from './form/register.page.form';
 import { getAuth } from "firebase/auth";
-
+import { getFirestore, collection } from 'firebase/firestore'
+import { getAnalytics } from 'firebase/analytics';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -44,24 +46,25 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   register(){
     this.registerForm.getForm().markAllAsTouched();
-
+    //const app = initializeApp(getConfig());
+    //const analytics = getAnalytics(app);
     if(this.registerForm.getForm().valid){
       //this.router.navigate(['/tabs']);
       this.store.dispatch(register({userRegister: this.registerForm.getForm().value}));
     }
-
-    
   }
 
   back(){
     this.router.navigate(['loading']);
   }
 
+  // addInfo(){
+  //   const firebaseApp = getApp();
+  //   const db = getFirestore(firebaseApp);
 
-  savedata(){
-    
-  
-  }
+  //   const userCollection = collection(db, 'users');
+  //   console.log(this)
+  // }
   
   
 
@@ -108,6 +111,10 @@ export class RegisterPage implements OnInit, OnDestroy {
 
 }
 
+
+function getConfig(): import("@firebase/app").FirebaseOptions {
+  return this.firebaseConfig;
+}
 // function writeUserData(user) {
 //   firebase.database().ref('users/' + user.uid).set(user).catch(error => {
 //       console.log(error.message)

@@ -16,12 +16,17 @@ export const environment = {
     appId: "1:953586470552:web:23a1ed73d0875575f84aed",
     measurementId: "G-99K8PKV0JV"
   },
-  production: false,
+  production: false
 
-  
+  // const app = initializeApp(firebaseConfig);
+  // const analytics = getAnalytics(app);
 };
 
 
+
+function getConfig() {
+  return this.firebaseConfig;
+}
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

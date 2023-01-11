@@ -1,4 +1,6 @@
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { getApp } from "firebase/app";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export class RegisterPageForm{
     private formBuilder: FormBuilder;
@@ -28,6 +30,13 @@ export class RegisterPageForm{
         return this.form;
     }
      
+    addInfo(): void{
+        const firebaseApp = getApp();
+        const db = getFirestore(firebaseApp);
+    
+        const userCollection = collection(db, 'users');
+        addDoc(userCollection, this.form.value);
+      }
 }
 
 
