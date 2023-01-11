@@ -30,6 +30,8 @@ export class RegisterPageForm{
      
 }
 
+
+
 function matchPasswordAndRepeatPassword(form: FormGroup) : ValidatorFn{
     const password = form.get('password');
     const repeatPassword = form.get('repeatPassword');

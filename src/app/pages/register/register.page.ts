@@ -15,6 +15,7 @@ import { login } from 'src/store/login/login.actions';
 import { register } from 'src/store/register/register.actions';
 import { RegisterState } from 'src/store/register/RegisterState';
 import { RegisterPageForm } from './form/register.page.form';
+import { getAuth } from "firebase/auth";
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,7 @@ export class RegisterPage implements OnInit, OnDestroy {
   registerStateSubscription: Subscription;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AppState>,
-    private toastController: ToastController) { }
+    private toastController: ToastController, private router: Router) { }
 
   ngOnInit() {
     this.createForm();
@@ -48,8 +49,21 @@ export class RegisterPage implements OnInit, OnDestroy {
       //this.router.navigate(['/tabs']);
       this.store.dispatch(register({userRegister: this.registerForm.getForm().value}));
     }
+
     
   }
+
+  back(){
+    this.router.navigate(['loading']);
+  }
+
+
+  savedata(){
+    
+  
+  }
+  
+  
 
   private createForm(){
     this.registerForm = new RegisterPageForm(this.formBuilder);
@@ -93,3 +107,9 @@ export class RegisterPage implements OnInit, OnDestroy {
   }
 
 }
+
+// function writeUserData(user) {
+//   firebase.database().ref('users/' + user.uid).set(user).catch(error => {
+//       console.log(error.message)
+//   });
+// }

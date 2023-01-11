@@ -7,26 +7,46 @@ import { User } from 'src/app/model/user/user';
 import * as firebase from 'firebase/compat/app'
 import { UserRegister } from 'src/app/model/user/UserRegister';
 //import { FirebaseDefaults } from '@firebase/util';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth: AngularFireAuth) { }
+  constructor(private auth: AngularFireAuth) {
+    //this.register = fireStore.collection<any>('User');
+   }
 
   register(userRegister: UserRegister) : Observable<void> {
+    // return new Observable<void>(observer => {
+    //   setTimeout(() => {
+    //     if(userRegister.email == "error@email.com"){
+    //       observer.error({message: "email already registered"})
+    //     } else {
+    //       observer.next();
+    //     }
+    //     observer.complete();
+        
+    //   }, 3000)
+    // })
+//------------------------------
     return new Observable<void>(observer => {
-      setTimeout(() => {
-        if(userRegister.email == "error@email.com"){
-          observer.error({message: "email already registered"})
-        } else {
-          observer.next();
-        }
+
+    this.auth.createUserWithEmailAndPassword(userRegister.email, userRegister.password)
+    .then((  ) => {
+        observer.next();
         observer.complete();
-      }, 3000)
-    })
+      }).catch(error => {
+        observer.error(error);
+        observer.complete();
+      })
+      })
+
   }
+
+
+
 
   recoverEmailPassword(email: string) : Observable<void> {
     return new Observable<void>(observer => {

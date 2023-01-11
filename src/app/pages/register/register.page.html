@@ -1,6 +1,21 @@
+<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-title>Welcome to Ability!</ion-title>
+    <ion-row no-padding>
+      <ion-col no-padding>
+          <ion-buttons left>
+              <button ion-button icon-only (click)="back()">
+                  <ion-icon name="arrow-back"></ion-icon>
+              </button>
+          </ion-buttons>
+      </ion-col>
+      <ion-col>
+        <div style="text-align: center;font-size: 20px; margin-top: 5px;">
+          Welcome to Ability!
+        </div>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
